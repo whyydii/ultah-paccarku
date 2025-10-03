@@ -335,9 +335,9 @@
     <div class="hearts-bg" id="heartsBg"></div>
 
     <div class="container">
-        <h1>🎂 Happy Birthday! 🎂</h1>
-        <p class="subtitle">Pacarku Anggi Widiantari ❤️</p>
-        <button id="openBtn" class="open-btn">✨ Buka sini ya ✨</button>
+        <h1>🎂 Happy 20th Birthday! 🎂</h1>
+        <p class="subtitle">To the most special person in my life ❤️</p>
+        <button id="openBtn" class="open-btn">✨ Open Your Gift ✨</button>
     </div>
 
     <div class="full-view" id="fullView">
@@ -352,7 +352,7 @@
 
     <script>
         const messages = [
-            'HBD ',
+            'Happy 20th Birthday, my love! You\'ve grown into such an amazing person. Here\'s to many more adventures together! 🎂❤️',
             'On your 20th birthday, I want you to know how much you mean to me. You\'re my everything. Cheers to you! 🥂',
             'Twenty years of awesomeness! Happy Birthday to the most wonderful boyfriend. I love you more than words can say. 🎈',
             'Wishing you a birthday filled with love, laughter, and all your favorite things. You deserve the world! 🌟',
@@ -430,7 +430,16 @@
             shuffledImages.forEach((name, index) => {
                 setTimeout(() => {
                     const img = document.createElement('img');
-                    img.src = `../ADADEH/image/${name}`;
+                    // Try multiple path options for compatibility
+                    img.src = `./image/${name}`;
+                    
+                    // Fallback if image fails to load
+                    img.onerror = function() {
+                        this.src = `/image/${name}`;
+                        this.onerror = function() {
+                            this.src = `../ADADEH/image/${name}`;
+                        };
+                    };
                     
                     // Calculate grid position
                     const row = Math.floor(index / gridSize);
